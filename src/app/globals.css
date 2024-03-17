@@ -1,33 +1,29 @@
-@tailwind base;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,200;0,600;0,700;1,200;1,600;1,700&family=Raleway:wght@200;300&display=swap")
+  @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.hoverScale:hover {
+  scale: 1.1;
+  transition-duration: 0.5s;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
+.blackGradient {
+  background: rgb(233, 232, 233);
+  background: -moz-linear-gradient(
+    176deg,
+    rgba(233, 232, 233, 1) 0%,
+    rgba(83, 83, 83, 1) 96%
+  );
+  background: -webkit-linear-gradient(
+    176deg,
+    rgba(233, 232, 233, 1) 0%,
+    rgba(83, 83, 83, 1) 96%
+  );
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    176deg,
+    rgba(233, 232, 233, 1) 0%,
+    rgba(83, 83, 83, 1) 96%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e9e8e9",endColorstr="#535353",GradientType=1);
 }
