@@ -1,40 +1,28 @@
-"use client";
+'use client';
+
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 
 export default function Home() {
-  const router = useRouter();
   const [isMobile, setIsMobile] = useState(false);
   const [attempted, setAttempted] = useState(false);
 
   useEffect(() => {
-    // Detect if user is on mobile
     const checkMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     setIsMobile(checkMobile);
 
-    // Auto-attempt to open app on mobile
     if (checkMobile && !attempted) {
       attemptOpenApp();
     }
-  }, []);
+  }, [attempted]);
 
   const attemptOpenApp = () => {
     setAttempted(true);
-    
-    // Get current path and query params
-    const currentPath = router.asPath;
-    const queryString = currentPath.includes('?') ? currentPath.split('?')[1] : '';
-    
-    // Build deep link URL
-    const deepLink = `awesomeproject://${currentPath}${queryString ? '?' + queryString : ''}`;
+    const currentPath = window.location.pathname;
+    const queryString = window.location.search;
+    const deepLink = `awesomeproject://${currentPath}${queryString}`;
     
     console.log('Attempting to open:', deepLink);
-    
-    // Try to open the app
     window.location.href = deepLink;
-    
-    // Note: We don't show fallback here because we want a clean UX
-    // The page will stay visible if app doesn't open
   };
 
   const handleOpenApp = () => {
@@ -48,9 +36,7 @@ export default function Home() {
         
         {isMobile ? (
           <>
-            <p style={styles.subtitle}>
-              Opening the app...
-            </p>
+            <p style={styles.subtitle}>Opening the app...</p>
             <button onClick={handleOpenApp} style={styles.button}>
               Open in App
             </button>
@@ -64,12 +50,8 @@ export default function Home() {
               Download our mobile app for the best experience
             </p>
             <div style={styles.badges}>
-              <a href="#" style={styles.badge}>
-                📱 Download on iOS
-              </a>
-              <a href="#" style={styles.badge}>
-                🤖 Download on Android
-              </a>
+              <a href="#" style={styles.badge}>📱 Download on iOS</a>
+              <a href="#" style={styles.badge}>🤖 Download on Android</a>
             </div>
           </>
         )}
